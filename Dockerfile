@@ -13,10 +13,11 @@ RUN apt-get update && \
     apt-get clean
 
 # Install IPFS Kubo
-RUN wget https://dist.ipfs.tech/kubo/v0.32.1/kubo_v0.32.1_linux-amd64.tar.gz && \
-    tar -xvzf kubo_v0.32.1_linux-amd64.tar.gz && \
+ENV KUBO_VERSION=v0.34.1
+RUN wget https://dist.ipfs.tech/kubo/${KUBO_VERSION}/kubo_${KUBO_VERSION}_linux-amd64.tar.gz && \
+    tar -xvzf kubo_${KUBO_VERSION}_linux-amd64.tar.gz && \
     mv kubo/ipfs /usr/local/bin/ipfs && \
-    rm -rf kubo kubo_v0.32.1_linux-amd64.tar.gz
+    rm -rf kubo kubo_${KUBO_VERSION}_linux-amd64.tar.gz
 
 # Add entrypoint script
 COPY entrypoint.sh /app/entrypoint.sh
